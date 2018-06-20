@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="/">Sigfox Devices</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Links -->
+
+                <!-- Links -->
+
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+    </header>
+
+
+    <!-- Main -->
+    <main class="mt-5 pt-5">
+        <div class="container">
+            <h3>
+                Device: {{ device }}
+            </h3>
+            <div class="card">
+                <div class="card-body">
+
+                    <!--Table-->
+                    <table class="table table-hover table-responsive-md w-auto">
+
+                        <!--Table head-->
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Data</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Temperature</th>
+                                <th>Voltage</th>
+                            </tr>
+                        </thead>
+                        <!--Table head-->
+
+                        <!--Table body-->
+                        <tbody>
+                            {% for message in messages %}
+
+                            <tr>
+                                <td>
+                                    {{message.time}}
+                                </td>
+                                <td>
+                                    <a href= {{ message.url }} >
+                                        {{message.data}}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{message.latitude}}
+                                </td>
+                                <td>
+                                    {{message.longitude}}
+                                </td>
+                                <td>
+                                    {{message.temperature}}
+                                </td>
+                                <td>
+                                    {{message.voltage}}
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                        <!--Table body-->
+
+                    </table>
+                    <!--Table-->
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- /.Main-->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
+</body>
+
+</html>
