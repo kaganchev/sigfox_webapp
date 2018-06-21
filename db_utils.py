@@ -1,6 +1,8 @@
+import pymongo
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from jsonschema import validate, ValidationError
+
 
 message_schema = {
     "type": "object",
@@ -28,8 +30,7 @@ def insert_message(data):
     # Create database client and connect to the sigfox client
     client = MongoClient()
     db = client.sigfox
-    messages = db.messages
-    messages.insert_one(data)
+    db.messages.insert_one(data)
 
     # Close the connection 
     client.close()
@@ -38,10 +39,9 @@ def insert_message(data):
 def find_all_devices():
     client = MongoClient()
     db = client.sigfox
-    messages = db.messages
 
     pipeline = [{"$group": {'_id': {"device": "$device"}}}]
-    devices = messages.aggregate(pipeline)
+    devices = db.messages.aggregate(pipeline)
     devices_list = []
     for device in list(devices):
         devices_list.append(device['_id'])
@@ -52,18 +52,16 @@ def find_all_devices():
 def find_messages_by_device(device):
     client = MongoClient()
     db = client.sigfox
-    messages = db.messages
 
-    messages_list = list(messages.find({"device": device}))
+    messages_list = list(db.messages.find({"device": device}).sort("time", -1))
     client.close()
     return messages_list
 
 def find_message_by_id(message_id):
     client = MongoClient()
     db = client.sigfox
-    messages = db.messages
 
-    message = list(messages.find_one({'_id': ObjectId(message_id)}))
+    message = list(db.messages.find_one({'_id': ObjectId(message_id)}))
     client.close()
 
     return message

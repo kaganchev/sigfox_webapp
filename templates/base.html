@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <title>
+        Sigfox IoT Devices
+    </title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -14,10 +17,13 @@
 
     <header>
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+        <nav class="navbar navbar-expand-lg navbar-dark primary-color elegant-color-dark">
 
             <!-- Navbar brand -->
-            <a class="navbar-brand" href="/">Sigfox Devices</a>
+            <a class="navbar-brand font-weight-bold" href="/">Sigfox IoT Devices
+                {% block nav %}
+                {% endblock %}
+            </a>
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -41,48 +47,17 @@
 
 
     <!-- Main -->
-    <main class="mt-5 pt-5">
+    <main class="mt-5 pt-5 ">
         <div class="container">
 
-            <div class="card">
-                <div class="card-body">
+            {% block content %} {% endblock %}
 
-                    <!--Table-->
-                    <table class="table table-hover table-responsive-md w-auto">
-
-                        <!--Table head-->
-                        <thead>
-                            <tr>
-                                <th>Device ID</th>
-                            </tr>
-                        </thead>
-                        <!--Table head-->
-
-                        <!--Table body-->
-                        <tbody>
-                            {% for device in devices %}
-
-                            <tr class='clickable-row' data-href='url://'>
-                                <td>
-                                   <a href= {{device.url}} >
-                                        {{ device.device }}
-                                   </a>
-                                </td>
-                            </tr>
-
-                            {% endfor %}
-                        </tbody>
-                        <!--Table body-->
-
-                    </table>
-                    <!--Table-->
-
-                </div>
-            </div>
         </div>
-    </main>
 
+    </main>
     <!-- /.Main-->
+
+
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

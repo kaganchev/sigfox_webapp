@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+
+
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+
+        <!--Table-->
+        <table class="table table-hover table-responsive-md btn-table">
+
+            <!--Table head-->
+            <thead>
+                <tr>
+                    <th class="text-center font-weight-bold">Device ID</th>
+                </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+                {% for device in devices %}
+
+                <tr>
+                    <td class="text-center">
+                        {{ device.device }}
+                    </td>
+                    <td class="text-right">
+                        <button type="button" class="btn btn-primary btn-rounded btn-sm my-0" onclick="location.href= '{{device.url}}' ">
+                            Show messages
+                        </button>
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+            <!--Table body-->
+
+        </table>
+        <!--Table-->
+
+    </div>
+</div>
+{% endblock %}

@@ -26,20 +26,20 @@ def devices():
     devices = db_utils.find_all_devices()
     for device in devices:
         device['url'] = url_for('device', device=device['device'])
-    return render_template('home.html', devices = devices)
+    return render_template('devices.html', devices = devices)
 
 @app.route('/device/<string:device>')
 def device(device):
     messages = db_utils.find_messages_by_device(device)
     for message in messages:
-        message['url'] = url_for('message', message_id =  "")
+        message['url'] = url_for('message', message_id =  str(message['_id']))
     return render_template('device.html', messages = messages, device = device)
 
 @app.route('/device/messages/<string:message_id>')
 def message(message_id):
     message = db_utils.find_message_by_id(message_id)
 
-    return message['_id']
+    return render_template('message.html', message = message)
 
 
 
