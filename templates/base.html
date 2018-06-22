@@ -13,11 +13,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="grey lighten-3">
 
     <header>
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark primary-color elegant-color-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark primary-color special-color-dark">
 
             <!-- Navbar brand -->
             <a class="navbar-brand font-weight-bold" href="/">Sigfox IoT Devices {% block nav %} {% endblock %}
@@ -60,6 +60,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
+    {% block script %}
+
+    {% endblock %}
+   
 </body>
 
 </html>
