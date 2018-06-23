@@ -62,7 +62,7 @@
                         {{message.voltage}}
                     </td>
                     <td>
-                        <button type="button" id="{{ loop.index }}" class="btn btn-primary btn-rounded btn-sm my-0 btn-deep-orange" onclick="change_location(this.id);">
+                        <button type="button" id="{{ loop.index }}" class="btn btn-primary btn-rounded btn-sm my-0 btn-deep-orange " onclick="change_location(this.id);">
                             Show
                         </button>
                     </td>
@@ -178,6 +178,16 @@
 
 
     function change_location(button_id) {
+        var buttons = document.getElementsByClassName("btn");
+        for (var i = 0; i < buttons.length; i++){
+            console.log(buttons[i]);
+            if (buttons[i].id == button_id){
+                buttons[i].classList.add("active");
+            }
+            else {
+                buttons[i].classList.remove("active");
+            }
+        }
         latitude = document.getElementById("latitude" + button_id).innerHTML;
         longitude = document.getElementById("longitude" + button_id).innerHTML;
         temperature = document.getElementById("temperature" + button_id).innerHTML;
