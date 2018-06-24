@@ -74,8 +74,12 @@ class Messages(Resource):
             time = datetime.fromtimestamp(int(message['time'])).strftime('%Y-%m-%d %H:%M:%S')
             message['time'] = time
 
-            temperature = int(data[18:20], 16)
-            message['temperature'] = temperature
+            if int(data[18:20], 16) > 127:
+                temperature = int(bin(int(data[18:20], 16))[3:], 2) * (-1)
+                message['temperature'] = temperature
+            else:
+                message['temperature'] = int(data[18:20], 16)
+
 
             voltage = (int(data[16:18], 16)*15)/1000
             message['voltage'] = voltage
