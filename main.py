@@ -55,13 +55,21 @@ class Messages(Resource):
         data = message['data']
         
         if len(data) == 24:
-            latitude = int(data[0:8], 16)
+            latitude = int(data[1:8], 16)
             latitude = ((latitude % 1000000) / 10000)/60 + int(latitude / 1000000)
-            message['latitude'] = latitude
 
-            longitude = int(data[8:16], 16)
+            if bin(int(data[0], 16))[2:][0] == '0':
+                message['latitude'] = round(latitude, 5)
+            else:
+                message['latitude'] = round(latitude, 5) * (-1)
+
+            longitude = int(data[9:16], 16)
             longitude = ((longitude % 1000000) / 10000)/60 + int(longitude / 1000000)
-            message['longitude'] = longitude
+
+            if bin(int(data[8], 16))[2:][0] == '0':
+                message['longitude'] = round(longitude, 5)
+            else:
+                message['longitude'] = round(longitude, 5) * (-1)
 
             time = datetime.fromtimestamp(int(message['time'])).strftime('%Y-%m-%d %H:%M:%S')
             message['time'] = time
