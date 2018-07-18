@@ -8,6 +8,7 @@ Web application for receiving messages from Sigfox IoT network and visualize the
 
 ## Endpoints
 * POST /messages - recieves messages from the Sigfox network in format: 
+
 {
   "device" : "{device}",
   "time" : "{time}",
